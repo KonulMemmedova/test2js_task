@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task9</title>
+    </head>
+    <body>
+        <!-- 9) Random reng generate eden functionu
+             internetden tapib ekrana her clickde body-e yeni generate
+              edilmish ve yeni reng-le renglenmish 100px - kvadrat box elave edin.  -->
+        <script>
+            function randomColor() {
+                const color = Math.floor(Math.random() * 16777215).toString(16);
+                return "#" + color;
+            }
+
+            function boxDiv() {
+                const colorfulbox = document.createElement("div");
+                colorfulbox.style.width = "100px";
+                colorfulbox.style.height = "100px";
+                colorfulbox.style.margin = "10px";
+                colorfulbox.style.backgroundColor = randomColor();
+                document.body.style.display = "flex";
+                document.body.appendChild(colorfulbox);
+            }
+
+            document.addEventListener("click", boxDiv);
+        </script>
+    </body>
+</html>

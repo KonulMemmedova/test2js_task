@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task3</title>
+        <style>
+            #myBox {
+                width: 200px;
+                 height: 200px;
+                  background-color: rgb(249, 5, 5); 
+                  position: absolute;
+                   top: 50%; left: 50%;
+                    transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+     <body> 
+        <!-- 3) Bir div yaradin onu sehifede centerleyin. Olculeri 200-200px
+             kvadrat olsun 1 saniyeden bir boyuyerek 400px-400px sonra yeniden oz olculerine qayitsin
+             Transitonla etmeyiniz gozlenilendir.  -->
+      
+        <div id="myBox"></div>
+        
+        <script>
+          var square = document.querySelector('div');
+          square.addEventListener('click', function() {
+            square.style.transition = 'none';
+            square.style.width = '400px';
+            square.style.height = '400px';
+            setTimeout(function() {
+              square.style.transition = 'none'; 
+              square.style.width = '200px';
+              square.style.height = '200px';
+            }, 1000);
+          });
+        </script>
+    </body>
+</html>

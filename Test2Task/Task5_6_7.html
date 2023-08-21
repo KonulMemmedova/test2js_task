@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task5_6_7</title>
+        <style>
+            #leftdown {
+                width: 50px;
+                height: 50px;
+                background-color: #757471;
+                position: absolute;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="leftdown"></div>
+
+        <script>
+            // 5) Bir div yaradin pencerenin sol yuxari kuncunde dayansin. Ustune clickledikde Ilk olaraq en sag kunce
+            // 2ci defe clickledikde ashagi kunce 3 cu de  sol ashagi kunce ve sonda ilk bashldigi yere qayitsin
+
+            const leftdown = document.getElementById("leftdown");
+            const maxX = window.innerWidth - leftdown.clientWidth;
+            const maxY = window.innerHeight - leftdown.clientHeight;
+
+            let clicks = 0;
+
+            leftdown.addEventListener("click", () => {
+                clicks++;
+                if (clicks === 1) {
+                    leftdown.style.left = `${maxX}px`;
+                } else if (clicks === 2) {
+                    leftdown.style.top = `${maxY}px`;
+                } else if (clicks === 3) {
+                    leftdown.style.left = 0;
+                    leftdown.style.top = `${maxY}px`;
+                } else {
+                    leftdown.style.left = 0;
+                    leftdown.style.top = 0;
+                    clicks = 0;
+                }
+            });
+
+            //6) 5 ci task hell edildiyi teqdirde eyni fayllar uzerinden davam edin ve klaviaturada kursor ashagi yuxari sag sol duymelerine basdiqda div-i hereket etdirmeye calishin.
+            // Hem 5 ci tapshiriqdaki hem de bu tapshiriq ishlek veziyyetde olmalidir.
+
+            let topPos = leftdown.offsetTop;
+            let leftPos = leftdown.offsetLeft;
+
+            document.addEventListener("keydown", (event) => {
+                const keyName = event.key;
+                switch (keyName) {
+                    case "ArrowUp":
+                        topPos -= 10;
+                        break;
+                    case "ArrowDown":
+                        topPos += 10;
+                        break;
+                    case "ArrowLeft":
+                        leftPos -= 10;
+                        break;
+                    case "ArrowRight":
+                        leftPos += 10;
+                        break;
+                    default:
+                        break;
+                }
+                leftdown.style.top = `${topPos}px`;
+                leftdown.style.left = `${leftPos}px`;
+            });
+
+            // 7) 5 ve 6 ci tasklar ugurla hell edilerse budefe hemin box-un yerini yadda saxlayin.
+            // Sehifeni yenilesem bele axirinci hansi veziyyetde qalmishdisa o veziyyetde gorunsun
+            // Ipucu localstorage ve ya session storage istifade edin.
+
+            const lastPosition = localStorage.getItem("boxPosition");
+            if (lastPosition) {
+                const [left, top] = lastPosition.split(",");
+                leftdown.style.left = left;
+                leftdown.style.top = top;
+            }
+            document.addEventListener("keydown", (event) => {
+                const keyName = event.key;
+                switch (keyName) {
+                    case "ArrowUp":
+                        topPos -= 10;
+                        break;
+                    case "ArrowDown":
+                        topPos += 10;
+                        break;
+                    case "ArrowLeft":
+                        leftPos -= 10;
+                        break;
+                    case "ArrowRight":
+                        leftPos += 10;
+                        break;
+                    default:
+                        break;
+                }
+                leftdown.style.top = `${topPos}px`;
+                leftdown.style.left = `${leftPos}px`;
+                const currentPosition = `${leftdown.style.left},${leftdown.style.top}`;
+                localStorage.setItem("boxPosition", currentPosition);
+            });
+        </script>
+    </body>
+</html>

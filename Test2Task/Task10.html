@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task10</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Josefin+Sans:ital,wght@1,600&family=Julee&display=swap"
+    rel="stylesheet"
+/>
+<style>
+    #Square {
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+        margin: 10px;
+    }
+    #size-input {
+        background-color: #95b6c8;
+        border: #95b6c8;
+        padding: 7px;
+        color: white;
+    }
+    #size {
+        font-family: "Righteous", cursive;
+    }
+</style>
+</head>
+<body>
+<!-- 10) Input (Type number) ve box (div 10px kvadrat) elave edin. Inputun icerisine reqem yazdiginiz qeder olculer boyusun ve ya kicilsin.
+Meselen 10px dir inputa 100yazdim olcusu 110px kvadrat olsun  -->
+<label id="size" for="size-input">Size:</label>
+<input type="number" id="size-input" value="10" onchange="resizeBox()" />
+<div id="Square"></div>
+
+<script>
+    function resizeBox() {
+        const size = parseInt(document.getElementById("size-input").value);
+        const Square = document.getElementById("Square");
+        const newSize = size + 10;
+        Square.style.width = newSize + "px";
+        Square.style.height = newSize + "px";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic</title>
+    <style>
+        body{
+        background-image:url(img/sonicbg.webp)
+     }
+     #sonic {
+        position: absolute;
+        left: 50%;
+        top:50%;
+        transform: translateX(-20%);
+        transition: transform 0.5s ease;
+        width: 200px;
+       
+    }
+    </style>
+</head>
+<body>
+  
+  </head>
+  <body>
+      <img id="sonic" src="img/sonic.png">
+     
+      <audio id="jump-sound" src="sonic.mp3"></audio>
+
+   
+   <script>
+
+        const sonic = document.getElementById("sonic")
+        const jumpSound = document.getElementById("jump-sound");
+         let isJumping = false;
+        let positionX = Number(localStorage.getItem("positionX")) || 50;
+        let positionY = 50;
+        let moveX = 0;
+
+function jump() {
+  if (!isJumping) {
+    isJumping = true;
+    sonic.src = "img/sonic_.png";
+    sonic.style.transform = "translateY(-200px)";
+    jumpSound.currentTime = 0;
+   jumpSound.play();
+    setTimeout(function() {
+        sonic.src = "img/sonic.png";
+        sonic.style.transform = "translateY(0)";
+      isJumping = false;
+    }, 700);
+  }
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.code === "Space") {
+    jump();
+  }
+});
+function move() {
+            positionX += moveX;
+            if (positionX < 0) {
+                positionX = 0;
+            } else if (positionX > 100) {
+                positionX = 100;
+            }
+            sonic.style.left = positionX + "%";
+            localStorage.setItem("positionX", positionX);
+
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.code === "ArrowLeft") {
+                moveX = -1;
+            } else if (event.code === "ArrowRight") {
+                moveX = 1;
+            } else if (event.code === "Space") {
+                jump();
+            }
+        });
+
+        document.addEventListener("keyup", function(event) {
+            if (event.code === "ArrowLeft" || event.code === "ArrowRight") {
+                moveX = 0;
+            }
+        });
+
+        setInterval(move, 30);
+
+
+ </script>
+</body>
+</html> 
+

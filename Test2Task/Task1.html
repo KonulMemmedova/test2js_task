@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TaskOne</title>
+        <style>
+            .bunny {
+                background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIY9E5OM1Plv10UCK7FF3vblfPlkcEB2Hz3eQ1gga1MUKGNoM_B192ucU0c0VsF58JEg&usqp=CAU")
+                    center no-repeat;
+                background-size: auto 100px;
+                width: 500px;
+                height: 300px;
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- 1) Bir div yaradin pencerenin solunda normal yerinde dayansin. 2 saniyeden bir 20px sola hereket etsin ve 20 saniyeden sonra dayansin.  -->
+        <div class="bunny"></div>
+
+        <script>
+            const bunny = document.querySelector(".bunny");
+            let left = 0;
+            let interval = setInterval(() => {
+                left += 20;
+                bunny.style.left = `${left}px`;
+            }, 2000);
+
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 20000);
+        </script>
+    </body>
+</html>
